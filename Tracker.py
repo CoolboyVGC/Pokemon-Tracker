@@ -18,35 +18,29 @@ class App(QWidget):
         height = size.height()
         
 #%%     Create Widgets
-        self.widgets = []
         
         self.EnterPokemonField = QLineEdit(self)
         self.EnterPokemonField.setGeometry(10, 10, 250, 30)
-        self.widgets.append(self.EnterPokemonField)
         
         self.ColorButton = QPushButton(self)
         self.ColorButton.setText('Select Color')
         self.ColorButton.setGeometry(270, 10, 90, 30)
         self.ColorButton.clicked.connect(self.OpenColorDialog)
-        self.widgets.append(self.ColorButton)
         
         self.DeleteButton = QPushButton(self)
         self.DeleteButton.setGeometry(370, 10, 20, 30)
         self.DeleteButton.setText('-')
         self.DeleteButton.clicked.connect(self.UnmarkPokemon)
-        self.DeleteButton.setToolTip('Unmark a pokemon, or mark a pokemon without it counting towards the total')        
-        self.widgets.append(self.DeleteButton)
+        self.DeleteButton.setToolTip('Unmark a pokemon, or mark a pokemon without it counting towards the total')  
         
         self.DexLoadButton = QPushButton(self)
         self.DexLoadButton.setGeometry(420, 10, 100, 30)
         self.DexLoadButton.setText('Load Pokemon List')
         self.DexLoadButton.clicked.connect(self.StartTracking)
-        self.widgets.append(self.DexLoadButton)        
         
         self.CheckBox = QCheckBox(self)
         self.CheckBox.setGeometry(775, 10, 110, 30)
         self.CheckBox.setText('Order by Nat Dex')
-        self.widgets.append(self.CheckBox)
         
         Basic_Order = ['National', 'RBY', 'GSC', 'RSE', 'DP', 'Platinum', 'HgSs', 'BW', 'BW2', 'XY', 'OrAs', 'SuMo', 'UsUm', 'Galar']
         self.comboBox = QComboBox(self)
@@ -61,28 +55,26 @@ class App(QWidget):
         self.comboBox.setGeometry(530, 10, 100, 30)
         self.comboBox.setCurrentIndex(0)
         self.comboBox.activated[str].connect(self.setDexList)
-        self.widgets.append(self.comboBox)
         
         self.PokemonAcrossField = QLineEdit(self)
         self.PokemonAcrossField.setGeometry(640, 10, 40, 30)
         self.PokemonAcrossField.setText(str(int(width/30)))
-        self.widgets.append(self.PokemonAcrossField)
+        self.PokemonAcross = str(int(width/30))
+        
         self.InformationLabel = QLabel(self)
         self.InformationLabel.setText('Pokemon Across')
         self.InformationLabel.setGeometry(690, 10, 80, 30)
-        self.widgets.append(self.InformationLabel)
+        
         
         self.ImportPokemonButton = QPushButton(self)
         self.ImportPokemonButton.setGeometry(width -150 -10, 10, 150, 30)
         self.ImportPokemonButton.setText('Import Marked Pokemon')
         self.ImportPokemonButton.clicked.connect(self.ImportMarked)
-        self.widgets.append(self.ImportPokemonButton)
         
         self.ExportPokemonButton = QPushButton(self)
         self.ExportPokemonButton.setGeometry(width -150 -10 -150 -10, 10, 150, 30)
         self.ExportPokemonButton.setText('Export Marked Pokemon')
         self.ExportPokemonButton.clicked.connect(self.ExportMarked)
-        self.widgets.append(self.ExportPokemonButton)
         
         
         self.CountLabel = QLabel(self)
@@ -91,10 +83,6 @@ class App(QWidget):
         self.CountLabel.setText('Total: 0/0')
         self.CountLabel.setGeometry(width-135, height-50, 135, 30)
         self.Count = 0
-        
-        self.DarkModeBox = QCheckBox(self)
-        self.DarkModeBox.setText('Dark Mode')
-        self.DarkModeBox.stateChanged.connect(self.DarkMode)
         
         self.Color = '#000000'
         self.pokemon_sprite = {} #sprites for the pokemon
@@ -125,46 +113,38 @@ class App(QWidget):
     
     def keyPressEvent(self, event):
          if event.key() == 16777220:
-             self.MarkPokemon()
-         if event.key() == 82 and event.modifiers() & Qt.ControlModifier:
-             print('Hard Reset')
+             try:
+                 self.MarkPokemon()
+             except:
+                 pass
     
     def mousePressEvent(self, event):
-        #Obtain Position where the marking must go
-        x = event.x()
-        x = 30* int(x/30)
-        y = event.y()
-        y = 15 + 30* int((y-15)/30)
-        
-        if y>44 and x<30*self.PokemonAcross: #only Mark pokemon when clicking where there are pokemon
-            #Determine what The national Dex Number of the pokemon is
-            rows = int((y-15)/30)
-            colomn = int(x/30) + 1
-            RegionalDexNumber = self.PokemonAcross * (rows-1) + colomn
-            NatDexNumber = self.NatDexNumberList[RegionalDexNumber-1]
-            self.EnterPokemonField.setText(self.all_pokemon[NatDexNumber-1])
+        try:
+            #Obtain Position where the marking must go
+            x = event.x()
+            x = 30* int(x/30)
+            y = event.y()
+            y = 15 + 30* int((y-15)/30)
             
-            if event.button() == 1:
-                self.MarkPokemon()
-            
-            elif event.button() == 2:
-                self.UnmarkPokemon()
+            if y>44 and x<30*self.PokemonAcross: #only Mark pokemon when clicking where there are pokemon
+                #Determine what The national Dex Number of the pokemon is
+                rows = int((y-15)/30)
+                colomn = int(x/30) + 1
+                if colomn>self.PokemonAcross:
+                    1[2] #Create error to stop
+                RegionalDexNumber = self.PokemonAcross * (rows-1) + colomn
+                NatDexNumber = self.NatDexNumberList[RegionalDexNumber-1]
+                self.EnterPokemonField.setText(self.all_pokemon[NatDexNumber-1])
+                
+                if event.button() == 1:
+                    self.MarkPokemon()
+                
+                elif event.button() == 2:
+                    self.UnmarkPokemon()
+        except:
+            pass
                 
     
-    def DarkMode(self):
-        if self.DarkModeBox.isChecked():
-            for widget in self.widgets:
-                if widget not in self.pokemon_sprite:
-                    self.setStyleSheet('background-color: Black')
-                    self.DarkModeBox.setStyleSheet('color: White')
-                    widget.setStyleSheet('background-color: Gray; color: Black; border-color: Black')
-        else:
-            #Activate Light Mode
-            for widget in self.widgets:
-                if widget not in self.pokemon_sprite:
-                    self.setStyleSheet('background-color: White')
-                    self.DarkModeBox.setStyleSheet('color: Black')
-                    widget.setStyleSheet('background-color: Gray; color: Black; border-color: White')
     
     
     def OpenColorDialog(self):
@@ -227,7 +207,7 @@ class App(QWidget):
                 continue
             elif i == ',':  #Run the mark pokemon using the current pokemon
                 
-                pokemon_name = ''
+                pokemon_number = ''
                 color_name = ''
                 
                 # Split the string to the pokemon and the color
@@ -237,26 +217,27 @@ class App(QWidget):
                         if character == '(':
                             colorStarted = True
                         else:
-                            pokemon_name += character
+                            pokemon_number += character
                     
+                    elif character == ')':
+                        break
                     else:
-                        if character == ')':
-                            break
-                        else:
-                            color_name += character
+                        color_name += character
                     
-                
-                pokemon = int(pokemon_name)
-                pokemon_name = self.NationalDex[pokemon-1][5:len(self.NationalDex[pokemon-1])-1]
-                
-                self.Color = color_name
-                
-                self.EnterPokemonField.setText(pokemon_name)
-                current_pokemon = ''
-                colorStarted = False
-                self.MarkPokemon()
-                
-                self.Color = oldcolor
+                try:
+                    pokemon = int(pokemon_number)
+                    pokemon_name = self.NationalDex[pokemon-1][5:len(self.NationalDex[pokemon-1])-1]
+                    
+                    self.Color = color_name
+                    
+                    self.EnterPokemonField.setText(pokemon_name)
+                    current_pokemon = ''
+                    colorStarted = False
+                    self.MarkPokemon()
+                    
+                    self.Color = oldcolor
+                except:
+                    pass
                 
             else:
                 current_pokemon += i
@@ -264,7 +245,10 @@ class App(QWidget):
     def StartTracking(self):
         
         self.Count = 0
-        self.PokemonAcross = int(self.PokemonAcrossField.text())
+        try:
+            self.PokemonAcross = int(self.PokemonAcrossField.text())
+        except:
+            pass
         
         #Clear old Markings
         for number in range(1, len(self.all_pokemon)):
@@ -371,15 +355,13 @@ class App(QWidget):
         Pokemon = self.EnterPokemonField.text()
         Pokemon = Pokemon.capitalize()
         if Pokemon not in self.MarkedList_pokemon:
+            NatDexNumber = self.all_pokemon.index(Pokemon) + 1
+           
+            self.pokemon_sprite['string'+str(NatDexNumber)].setStyleSheet('background-color: %s' % (self.Color))
             
             self.EnterPokemonField.setText('')
             self.Count += 1
             self.CountLabel.setText('Total: ' + str(self.Count) + '/' + str(len(self.remaining_list)))
-            
-            
-            NatDexNumber = self.all_pokemon.index(Pokemon) + 1
-           
-            self.pokemon_sprite['string'+str(NatDexNumber)].setStyleSheet('background-color: %s' % (self.Color))
             
             
             self.MarkedList_pokemon.append(Pokemon)
