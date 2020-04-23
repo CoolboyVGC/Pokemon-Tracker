@@ -1,151 +1,151 @@
-#001 Turtwig
-#002 Grotle
-#003 Torterra
-#004 Chimchar
-#005 Monferno
-#006 Infernape
-#007 Piplup
-#008 Prinplup
-#009 Empoleon
-#010 Starly
-#011 Staravia
-#012 Staraptor
-#013 Bidoof
-#014 Bibarel
-#015 Kricketot
-#016 Kricketune
-#017 Shinx
-#018 Luxio
-#019 Luxray
-#020 Abra
-#021 Kadabra
-#022 Alakazam
-#023 Magikarp
-#024 Gyarados
-#025 Budew
-#026 Roselia
-#027 Roserade
-#028 Zubat
-#029 Golbat
-#030 Crobat
-#031 Geodude
-#032 Graveler
-#033 Golem
-#034 Onix
-#035 Steelix
-#036 Cranidos
-#037 Rampardos
-#038 Shieldon
-#039 Bastiodon
-#040 Machop
-#041 Machoke
-#042 Machamp
-#043 Psyduck
-#044 Golduck
-#045 Burmy
-#046 Wormadam
-#047 Mothim
-#048 Wurmple
-#049 Silcoon
-#050 Beautifly
-#051 Cascoon
-#052 Dustox
-#053 Combee
-#054 Vespiquen
-#055 Pachirisu
-#056 Buizel
-#057 Floatzel
-#058 Cherubi
-#059 Cherrim
-#060 Shellos
-#061 Gastrodon
-#062 Heracross
-#063 Aipom
-#064 Ambipom
-#065 Drifloon
-#066 Drifblim
-#067 Buneary
-#068 Lopunny
-#069 Gastly
-#070 Haunter
-#071 Gengar
-#072 Misdreavus
-#073 Mismagius
-#074 Murkrow
-#075 Honchkrow
-#076 Glameow
-#077 Purugly
-#078 Goldeen
-#079 Seaking
-#080 Barboach
-#081 Whiscash
-#082 Chingling
-#083 Chimecho
-#084 Stunky
-#085 Skuntank
-#086 Meditite
-#087 Medicham
-#088 Bronzor
-#089 Bronzong
-#090 Ponyta
-#091 Rapidash
-#092 Bonsly
-#093 Sudowoodo
-#094 Mime Jr.
-#095 Mr. Mime
-#096 Happiny
-#097 Chansey
-#098 Blissey
-#099 Cleffa
-#100 Clefairy
-#101 Clefable
-#102 Chatot
-#103 Pichu
-#104 Pikachu
-#105 Raichu
-#106 Hoothoot
-#107 Noctowl
-#108 Spiritomb
-#109 Gible
-#110 Gabite
-#111 Garchomp
-#112 Munchlax
-#113 Snorlax
-#114 Unown
-#115 Riolu
-#116 Lucario
-#117 Wooper
-#118 Quagsire
-#119 Wingull
-#120 Pelipper
-#121 Girafarig
-#122 Hippopotas
-#123 Hippowdon
-#124 Azurill
-#125 Marill
-#126 Azumarill
-#127 Skorupi
-#128 Drapion
-#129 Croagunk
-#130 Toxicroak
-#131 Carnivine
-#132 Remoraid
-#133 Octillery
-#134 Finneon
-#135 Lumineon
-#136 Tentacool
-#137 Tentacruel
-#138 Feebas
-#139 Milotic
-#140 Mantyke
-#141 Mantine
-#142 Snover
-#143 Abomasnow
-#144 Sneasel
-#145 Weavile
-#146 Uxie
-#147 Mesprit
-#148 Azelf
-#149 Dialga
-#150 Palkia
-#151 Manaphy
+Turtwig
+Grotle
+Torterra
+Chimchar
+Monferno
+Infernape
+Piplup
+Prinplup
+Empoleon
+Starly
+Staravia
+Staraptor
+Bidoof
+Bibarel
+Kricketot
+Kricketune
+Shinx
+Luxio
+Luxray
+Abra
+Kadabra
+Alakazam
+Magikarp
+Gyarados
+Budew
+Roselia
+Roserade
+Zubat
+Golbat
+Crobat
+Geodude
+Graveler
+Golem
+Onix
+Steelix
+Cranidos
+Rampardos
+Shieldon
+Bastiodon
+Machop
+Machoke
+Machamp
+Psyduck
+Golduck
+Burmy
+Wormadam
+Mothim
+Wurmple
+Silcoon
+Beautifly
+Cascoon
+Dustox
+Combee
+Vespiquen
+Pachirisu
+Buizel
+Floatzel
+Cherubi
+Cherrim
+Shellos
+Gastrodon
+Heracross
+Aipom
+Ambipom
+Drifloon
+Drifblim
+Buneary
+Lopunny
+Gastly
+Haunter
+Gengar
+Misdreavus
+Mismagius
+Murkrow
+Honchkrow
+Glameow
+Purugly
+Goldeen
+Seaking
+Barboach
+Whiscash
+Chingling
+Chimecho
+Stunky
+Skuntank
+Meditite
+Medicham
+Bronzor
+Bronzong
+Ponyta
+Rapidash
+Bonsly
+Sudowoodo
+Mime Jr.
+Mr. Mime
+Happiny
+Chansey
+Blissey
+Cleffa
+Clefairy
+Clefable
+Chatot
+Pichu
+Pikachu
+Raichu
+Hoothoot
+Noctowl
+Spiritomb
+Gible
+Gabite
+Garchomp
+Munchlax
+Snorlax
+Unown
+Riolu
+Lucario
+Wooper
+Quagsire
+Wingull
+Pelipper
+Girafarig
+Hippopotas
+Hippowdon
+Azurill
+Marill
+Azumarill
+Skorupi
+Drapion
+Croagunk
+Toxicroak
+Carnivine
+Remoraid
+Octillery
+Finneon
+Lumineon
+Tentacool
+Tentacruel
+Feebas
+Milotic
+Mantyke
+Mantine
+Snover
+Abomasnow
+Sneasel
+Weavile
+Uxie
+Mesprit
+Azelf
+Dialga
+Palkia
+Manaphy

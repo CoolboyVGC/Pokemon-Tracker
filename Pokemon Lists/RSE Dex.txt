@@ -1,202 +1,202 @@
-#001 Treecko
-#002 Grovyle
-#003 Sceptile
-#004 Torchic
-#005 Combusken
-#006 Blaziken
-#007 Mudkip
-#008 Marshtomp
-#009 Swampert
-#010 Poochyena
-#011 Mightyena
-#012 Zigzagoon
-#013 Linoone
-#014 Wurmple
-#015 Silcoon
-#016 Beautifly
-#017 Cascoon
-#018 Dustox
-#019 Lotad
-#020 Lombre
-#021 Ludicolo
-#022 Seedot
-#023 Nuzleaf
-#024 Shiftry
-#025 Taillow
-#026 Swellow
-#027 Wingull
-#028 Pelipper
-#029 Ralts
-#030 Kirlia
-#031 Gardevoir
-#032 Surskit
-#033 Masquerain
-#034 Shroomish
-#035 Breloom
-#036 Slakoth
-#037 Vigoroth
-#038 Slaking
-#039 Abra
-#040 Kadabra
-#041 Alakazam
-#042 Nincada
-#043 Ninjask
-#044 Shedinja
-#045 Whismur
-#046 Loudred
-#047 Exploud
-#048 Makuhita
-#049 Hariyama
-#050 Goldeen
-#051 Seaking
-#052 Magikarp
-#053 Gyarados
-#054 Azurill
-#055 Marill
-#056 Azumarill
-#057 Geodude
-#058 Graveler
-#059 Golem
-#060 Nosepass
-#061 Skitty
-#062 Delcatty
-#063 Zubat
-#064 Golbat
-#065 Crobat
-#066 Tentacool
-#067 Tentacruel
-#068 Sableye
-#069 Mawile
-#070 Aron
-#071 Lairon
-#072 Aggron
-#073 Machop
-#074 Machoke
-#075 Machamp
-#076 Meditite
-#077 Medicham
-#078 Electrike
-#079 Manectric
-#080 Plusle
-#081 Minun
-#082 Magnemite
-#083 Magneton
-#084 Voltorb
-#085 Electrode
-#086 Volbeat
-#087 Illumise
-#088 Oddish
-#089 Gloom
-#090 Vileplume
-#091 Bellossom
-#092 Doduo
-#093 Dodrio
-#094 Roselia
-#095 Gulpin
-#096 Swalot
-#097 Carvanha
-#098 Sharpedo
-#099 Wailmer
-#100 Wailord
-#101 Numel
-#102 Camerupt
-#103 Slugma
-#104 Magcargo
-#105 Torkoal
-#106 Grimer
-#107 Muk
-#108 Koffing
-#109 Weezing
-#110 Spoink
-#111 Grumpig
-#112 Sandshrew
-#113 Sandslash
-#114 Spinda
-#115 Skarmory
-#116 Trapinch
-#117 Vibrava
-#118 Flygon
-#119 Cacnea
-#120 Cacturne
-#121 Swablu
-#122 Altaria
-#123 Zangoose
-#124 Seviper
-#125 Lunatone
-#126 Solrock
-#127 Barboach
-#128 Whiscash
-#129 Corphish
-#130 Crawdaunt
-#131 Baltoy
-#132 Claydol
-#133 Lileep
-#134 Cradily
-#135 Anorith
-#136 Armaldo
-#137 Igglybuff
-#138 Jigglypuff
-#139 Wigglytuff
-#140 Feebas
-#141 Milotic
-#142 Castform
-#143 Staryu
-#144 Starmie
-#145 Kecleon
-#146 Shuppet
-#147 Banette
-#148 Duskull
-#149 Dusclops
-#150 Tropius
-#151 Chimecho
-#152 Absol
-#153 Vulpix
-#154 Ninetales
-#155 Pichu
-#156 Pikachu
-#157 Raichu
-#158 Psyduck
-#159 Golduck
-#160 Wynaut
-#161 Wobbuffet
-#162 Natu
-#163 Xatu
-#164 Girafarig
-#165 Phanpy
-#166 Donphan
-#167 Pinsir
-#168 Heracross
-#169 Rhyhorn
-#170 Rhydon
-#171 Snorunt
-#172 Glalie
-#173 Spheal
-#174 Sealeo
-#175 Walrein
-#176 Clamperl
-#177 Huntail
-#178 Gorebyss
-#179 Relicanth
-#180 Corsola
-#181 Chinchou
-#182 Lanturn
-#183 Luvdisc
-#184 Horsea
-#185 Seadra
-#186 Kingdra
-#187 Bagon
-#188 Shelgon
-#189 Salamence
-#190 Beldum
-#191 Metang
-#192 Metagross
-#193 Regirock
-#194 Regice
-#195 Registeel
-#196 Latias
-#197 Latios
-#198 Kyogre
-#199 Groudon
-#200 Rayquaza
-#201 Jirachi
-#202 Deoxys
+Treecko
+Grovyle
+Sceptile
+Torchic
+Combusken
+Blaziken
+Mudkip
+Marshtomp
+Swampert
+Poochyena
+Mightyena
+Zigzagoon
+Linoone
+Wurmple
+Silcoon
+Beautifly
+Cascoon
+Dustox
+Lotad
+Lombre
+Ludicolo
+Seedot
+Nuzleaf
+Shiftry
+Taillow
+Swellow
+Wingull
+Pelipper
+Ralts
+Kirlia
+Gardevoir
+Surskit
+Masquerain
+Shroomish
+Breloom
+Slakoth
+Vigoroth
+Slaking
+Abra
+Kadabra
+Alakazam
+Nincada
+Ninjask
+Shedinja
+Whismur
+Loudred
+Exploud
+Makuhita
+Hariyama
+Goldeen
+Seaking
+Magikarp
+Gyarados
+Azurill
+Marill
+Azumarill
+Geodude
+Graveler
+Golem
+Nosepass
+Skitty
+Delcatty
+Zubat
+Golbat
+Crobat
+Tentacool
+Tentacruel
+Sableye
+Mawile
+Aron
+Lairon
+Aggron
+Machop
+Machoke
+Machamp
+Meditite
+Medicham
+Electrike
+Manectric
+Plusle
+Minun
+Magnemite
+Magneton
+Voltorb
+Electrode
+Volbeat
+Illumise
+Oddish
+Gloom
+Vileplume
+Bellossom
+Doduo
+Dodrio
+Roselia
+Gulpin
+Swalot
+Carvanha
+Sharpedo
+Wailmer
+Wailord
+Numel
+Camerupt
+Slugma
+Magcargo
+Torkoal
+Grimer
+Muk
+Koffing
+Weezing
+Spoink
+Grumpig
+Sandshrew
+Sandslash
+Spinda
+Skarmory
+Trapinch
+Vibrava
+Flygon
+Cacnea
+Cacturne
+Swablu
+Altaria
+Zangoose
+Seviper
+Lunatone
+Solrock
+Barboach
+Whiscash
+Corphish
+Crawdaunt
+Baltoy
+Claydol
+Lileep
+Cradily
+Anorith
+Armaldo
+Igglybuff
+Jigglypuff
+Wigglytuff
+Feebas
+Milotic
+Castform
+Staryu
+Starmie
+Kecleon
+Shuppet
+Banette
+Duskull
+Dusclops
+Tropius
+Chimecho
+Absol
+Vulpix
+Ninetales
+Pichu
+Pikachu
+Raichu
+Psyduck
+Golduck
+Wynaut
+Wobbuffet
+Natu
+Xatu
+Girafarig
+Phanpy
+Donphan
+Pinsir
+Heracross
+Rhyhorn
+Rhydon
+Snorunt
+Glalie
+Spheal
+Sealeo
+Walrein
+Clamperl
+Huntail
+Gorebyss
+Relicanth
+Corsola
+Chinchou
+Lanturn
+Luvdisc
+Horsea
+Seadra
+Kingdra
+Bagon
+Shelgon
+Salamence
+Beldum
+Metang
+Metagross
+Regirock
+Regice
+Registeel
+Latias
+Latios
+Kyogre
+Groudon
+Rayquaza
+Jirachi
+Deoxys
