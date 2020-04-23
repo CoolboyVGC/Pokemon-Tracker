@@ -25,6 +25,6 @@ for i in range(1, 891):
     Number += 1
     
     if Number%50 == 0:
-        sleep(5) #Serebii blocks requests after 50, so a 5s timeout is needed
+        sleep(5) #Serebii blocks requests after 50, so a timeout is needed
 
 print('done')
