@@ -394,29 +394,32 @@ class App(QMainWindow):
             self.MarkedList_color.append(self.Color)
 
     def unmarkPokemon(self):
-        Pokemon = self.EnterPokemonField.text()
-        Pokemon = Pokemon.capitalize()
-        if Pokemon in self.MarkedList_pokemon:
+        try:
+            Pokemon = self.EnterPokemonField.text()
+            Pokemon = Pokemon.capitalize()
+            if Pokemon in self.MarkedList_pokemon:
 
-            self.EnterPokemonField.setText('')
-            self.Count -= 1
-            self.CountLabel.setText('Total: ' + str(self.Count) + '/' + str(len(self.remaining_list)))
+                self.EnterPokemonField.setText('')
+                self.Count -= 1
+                self.CountLabel.setText('Total: ' + str(self.Count) + '/' + str(len(self.remaining_list)))
 
-            NatDexNumber = self.getNatDexNumber(0, Pokemon)
+                NatDexNumber = self.getNatDexNumber(0, Pokemon)
 
-            self.pokemon_sprite['string' + str(NatDexNumber)].setStyleSheet('background-color: transparent')
+                self.pokemon_sprite['string' + str(NatDexNumber)].setStyleSheet('background-color: transparent')
 
-            index = self.MarkedList_pokemon.index(Pokemon)
-            self.MarkedList_pokemon.pop(index)
-            self.MarkedList_number.pop(index)
-            self.MarkedList_color.pop(index)
+                index = self.MarkedList_pokemon.index(Pokemon)
+                self.MarkedList_pokemon.pop(index)
+                self.MarkedList_number.pop(index)
+                self.MarkedList_color.pop(index)
 
-        else:
-            self.EnterPokemonField.setText('')
-            
-            self.UnmarkedList.append(Pokemon)
-            NatDexNumber = self.getNatDexNumber(0, Pokemon)
-            self.pokemon_sprite['string' + str(NatDexNumber)].setStyleSheet('background-color: blue')
+            else:
+                self.EnterPokemonField.setText('')
+                
+                self.UnmarkedList.append(Pokemon)
+                NatDexNumber = self.getNatDexNumber(0, Pokemon)
+                self.pokemon_sprite['string' + str(NatDexNumber)].setStyleSheet('background-color: blue')
+        except:
+            pass
 
 
 # %%     open the window
