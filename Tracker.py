@@ -2,12 +2,12 @@ import sys
 import os
 import random
 import traceback
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QComboBox, QColorDialog, QMessageBox, QSpinBox, QCheckBox, QDesktopWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QComboBox, QColorDialog, QMessageBox, QSpinBox, QCheckBox, QDesktopWidget, QFileDialog
 from PyQt5.QtGui import QPixmap, QFont, QIcon
 
 import ctypes
 
-myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+myappid = 'CoolboyVGC.PokedexTracker.1.1.0'  # arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 
@@ -123,6 +123,7 @@ class App(QMainWindow):
         for string in self.NationalDex:
             string_pokemon = string.capitalize()
             self.all_pokemon.append(string_pokemon)
+        print(self.all_pokemon)
 
         # Initialize all pokemon
         for x in range(1, 891):
@@ -216,44 +217,53 @@ class App(QMainWindow):
 
             number += 1
 
-        self.EnterPokemonField.setText(marked)
+        filename, ok = QFileDialog.getSaveFileName(self,"Save Progress", "", "Text Files (*.txt);;All Files (*)")
+        if ok:
+            with open(filename, "w") as f:
+                f.write(marked)
+        
 
     def importMarked(self):
         oldcolor = self.Color
 
-        file = open(os.path.join(resource_path('Pokemon Lists'), 'National Dex.txt'), 'r')
-        file.close()
+        fileName, ok = QFileDialog.getOpenFileName(self, "Select Saved Progress", "", "Text Files (*.txt);;All Files (*)")
+        if not ok:
+            return
 
-        pokemonlist = list(self.EnterPokemonField.text())
-        pokemonlist.append(',')  # This makes it easy to run the last pokemon as well
+        try:
+            pokemonlist = list(open(fileName, 'r').read())
 
-        # Adding some variables that will be used in this function
-        current_pokemon = ''
-        colorStarted = False
+            #file = open(os.path.join(resource_path('Pokemon Lists'), 'National Dex.txt'), 'r')
+            #file.close()
 
-        for i in pokemonlist:
-            if i == ' ':  # Exclude the spaces, they are only between pokemon for the users convinience
-                continue
-            elif i == ',':  # Run the mark pokemon using the current pokemon
+            pokemonlist.append(',')  # This makes it easy to run the last pokemon as well
 
-                pokemon_number = ''
-                color_name = ''
+            # Adding some variables that will be used in this function
+            current_pokemon = ''
+            colorStarted = False
 
-                # Split the string to the pokemon and the color
-                for character in current_pokemon:
+            for i in pokemonlist:
+                if i == ' ':  # Exclude the spaces, they are only between pokemon for the users convinience
+                    continue
+                elif i == ',':  # Run the mark pokemon using the current pokemon
 
-                    if not colorStarted:
-                        if character == '(':
-                            colorStarted = True
+                    pokemon_number = ''
+                    color_name = ''
+
+                    # Split the string to the pokemon and the color
+                    for character in current_pokemon:
+
+                        if not colorStarted:
+                            if character == '(':
+                                colorStarted = True
+                            else:
+                                pokemon_number += character
+
+                        elif character == ')':
+                            break
                         else:
-                            pokemon_number += character
+                            color_name += character
 
-                    elif character == ')':
-                        break
-                    else:
-                        color_name += character
-
-                try:
                     pokemon = int(pokemon_number)
                     pokemon_name = self.NationalDex[pokemon - 1][:-1]
 
@@ -265,11 +275,14 @@ class App(QMainWindow):
                     self.markPokemon()
 
                     self.Color = oldcolor
-                except:
-                    pass
 
-            else:
-                current_pokemon += i
+                else:
+                    current_pokemon += i
+        except:
+            msg = QMessageBox(self)
+            msg.setWindowTitle("Error")
+            msg.setText("Error while decoding the file")
+            msg.exec_()
 
     def startTracking(self):
         try:
