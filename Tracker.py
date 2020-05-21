@@ -1,13 +1,15 @@
 import sys
 import os
-import random
+import re
 import traceback
+import json
+import ctypes
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QComboBox, QColorDialog, QMessageBox, QSpinBox, QCheckBox, QDesktopWidget, QFileDialog
 from PyQt5.QtGui import QPixmap, QFont, QIcon
+from PyQt5.QtCore import Qt
 
-import ctypes
 
-myappid = 'CoolboyVGC.PokedexTracker.1.1.0'  # arbitrary string
+myappid = 'CoolboyVGC.PokedexTracker.2.0.0'  # arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 
@@ -27,10 +29,10 @@ class App(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.title = 'Pokemon Dex Tracker'
-        self.setWindowTitle(self.title)
+        self.setAcceptDrops(True)
+        self.setWindowTitle('Pokemon Dex Tracker')
         self.setWindowIcon(QIcon(resource_path('./Pokemon Sprites/Pokeball.ico')))
-
+        
         size = app.primaryScreen().availableGeometry()  # Get the borders of the screen
         size = QDesktopWidget().screenGeometry(0)
         width = size.width()
@@ -123,7 +125,6 @@ class App(QMainWindow):
         for string in self.NationalDex:
             string_pokemon = string.capitalize()
             self.all_pokemon.append(string_pokemon)
-        print(self.all_pokemon)
 
         # Initialize all pokemon
         for x in range(1, 891):
@@ -180,6 +181,67 @@ class App(QMainWindow):
         except:
             pass
 
+    def dragEnterEvent(self, event):
+        try:
+            if event.mimeData().hasUrls():
+                event.accept()
+            else:
+                event.ignore()
+        except:
+            traceback.print_exc()
+
+    def dragMoveEvent(self, event):
+        try:
+            if event.mimeData().hasUrls():
+                event.setDropAction(Qt.CopyAction)
+                event.accept()
+            else:
+                event.ignore()
+        except:
+            traceback.print_exc()
+
+    def dropEvent(self, event):
+        try:
+            if event.mimeData().hasUrls():
+                event.setDropAction(Qt.CopyAction)
+                event.accept()
+                
+                for url in event.mimeData().urls():
+
+                    if url.isLocalFile:
+    
+                        url = str(url.toLocalFile())
+                        
+                        "Determine what kind of file is added"
+                        with open(url, 'r') as f:
+                            text = f.read()
+    
+                            try:
+                                json.loads(text)
+                                "New Format marked list"
+                                self.importMarked(url=url)
+                                return
+                            
+                            except json.JSONDecodeError:
+                                if len(text.split('\n')) > 1:
+                                    if text.split('\n')[0] in self.all_pokemon:
+                                        "Tracker List"
+                                        self.startTracking(url=url)
+                                        return
+                                
+                                else:
+                                    "Old Format marked list"
+                                    self.importMarked(url=url)
+                                    return
+                    
+                    msg = QMessageBox(parent=self, text="The given file could not be interpreted")
+                    msg.exec_()
+                
+            else:
+                event.ignore()
+        except:
+            traceback.print_exc()
+
     def openColorDialog(self):
         try:
             color = QColorDialog.getColor()
@@ -202,36 +264,64 @@ class App(QMainWindow):
         except:
             traceback.print_exc
             
-
     def setDexList(self, text):
         self.DexList = text + '.txt'
 
     def exportMarked(self):
-        number = 1
-        marked = ''
-        for pokemon in self.MarkedList_number:
-            if number < len(self.MarkedList_number):
-                marked += pokemon + '(' + self.MarkedList_color[number - 1] + '), '
-            else:
-                marked += pokemon + '(' + self.Color + ')'
-
-            number += 1
-
-        filename, ok = QFileDialog.getSaveFileName(self,"Save Progress", "", "Text Files (*.txt);;All Files (*)")
-        if ok:
-            with open(filename, "w") as f:
-                f.write(marked)
+        try:
+            filename, ok = QFileDialog.getSaveFileName(self, "Save Progress", "", "JSON Files (*.json);;Text Files (*.txt);;All Files (*)")
+            if ok:
+            
+                Dict = {"Doctype": "PkmnTrackerSavev2",
+                        "pkmn": {}}
+                
+                for index, pokemon in enumerate(self.MarkedList_pokemon):
+                    color = self.MarkedList_color[index]
+                    Dict['pkmn'][pokemon] = color
+            
+                with open(filename, "w") as f:
+                    json.dump(Dict, f, ensure_ascii=True, indent=4)
+        except:
+            traceback.print_exc()
         
+    def importMarked(self, url=None):
 
-    def importMarked(self):
+        if not url:
+            url, ok = QFileDialog.getOpenFileName(self, "Select Saved Progress", "", "JSON Files (*.json);;Text Files (*.txt);;All Files (*)")
+            if not ok:
+                return
+
         oldcolor = self.Color
 
-        fileName, ok = QFileDialog.getOpenFileName(self, "Select Saved Progress", "", "Text Files (*.txt);;All Files (*)")
-        if not ok:
-            return
-
         try:
-            pokemonlist = list(open(fileName, 'r').read())
+            """New Format of Pokemon File"""
+            Dict = json.loads(open(url, 'r').read())
+            
+            try:
+                if Dict["Doctype"] != "PkmnTrackerSavev2":
+                    raise KeyError
+            except KeyError:
+                msg = QMessageBox(parent=self, text="The given file could not be interpreted")
+                msg.exec_()
+                return
+            
+            for pokemon in Dict["pkmn"]:
+                color = Dict['pkmn'][pokemon]
+
+                self.Color = color
+                self.EnterPokemonField.setText(pokemon)
+                self.markPokemon()
+            
+            self.Color = oldcolor
+            
+            return
+        
+        except json.JSONDecodeError:
+            pass
+        
+        try:
+            """Old Format of Pokemon File, still needs to be supported"""
+            pokemonlist = list(open(url, 'r').read())
 
             #file = open(os.path.join(resource_path('Pokemon Lists'), 'National Dex.txt'), 'r')
             #file.close()
@@ -279,12 +369,10 @@ class App(QMainWindow):
                 else:
                     current_pokemon += i
         except:
-            msg = QMessageBox(self)
-            msg.setWindowTitle("Error")
-            msg.setText("Error while decoding the file")
+            msg = QMessageBox(parent=self, text="The given file could not be interpreted")
             msg.exec_()
 
-    def startTracking(self):
+    def startTracking(self, url=None):
         try:
             self.Count = 0
             try:
@@ -305,10 +393,13 @@ class App(QMainWindow):
     
             # Create Pokemon List
             file_name = self.DexList
-            try:
-                file = open(resource_path('./Pokemon Lists/'+file_name), 'r')
-            except:
-                file = open('./Extra Lists/'+file_name, 'r')
+            if url:
+                file = open(url, 'r')
+            else:
+                try:
+                    file = open(resource_path('./Pokemon Lists/'+file_name), 'r')
+                except FileNotFoundError:
+                    file = open('./Extra Lists/'+file_name, 'r')
             DexNumber = 1
             self.remaining_list = []
             self.remaining_list_with_number = []
@@ -440,5 +531,6 @@ if __name__ == '__main__':
     app = 0
     app = QApplication(sys.argv)
     ex = App()
+    ex.installEventFilter(ex)
     ex.show()
     sys.exit(app.exec_())
